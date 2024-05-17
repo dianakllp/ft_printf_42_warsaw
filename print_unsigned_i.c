@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_unsigned_i.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkolopen <dkolopen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 13:21:51 by dkolopen          #+#    #+#             */
-/*   Updated: 2024/05/17 13:35:11 by dkolopen         ###   ########.fr       */
+/*   Created: 2024/05/10 13:25:06 by dkolopen          #+#    #+#             */
+/*   Updated: 2024/05/17 13:35:58 by dkolopen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	print_unsigned_int(unsigned int nb)
 {
-	va_list	args;
-	int		result;
+	int		counter;
+	char	c;
 
-	va_start (args, str);
-	result = parse_str(str, args);
-	va_end (args);
-	return (result);
+	counter = 0;
+	if (nb > 9)
+		print_unsigned_int(nb / 10);
+	c = (nb % 10) + '0';
+	counter += write(1, &c, 1);
+	return (counter);
 }
-
-/*int	main()
-{
-	int		*ptr;
-	int		i;
-	
-	i = 27;
-	ptr = &i;
-	printf("Result: %d %c %s %% %X %x %p %i %u\n", 7, 
-	//'c', "string", 15, 12345, ptr, 44,956);
-	ft_printf("Result: %d %c %s %% %X %x %p %i %u\n", 7,
-	'c', "string", 15, 12345, ptr, 44,956);
-	
-	return 0;
-}*/

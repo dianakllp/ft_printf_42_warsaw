@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkolopen <dkolopen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 13:21:51 by dkolopen          #+#    #+#             */
-/*   Updated: 2024/05/17 13:35:11 by dkolopen         ###   ########.fr       */
+/*   Created: 2024/05/10 13:24:51 by dkolopen          #+#    #+#             */
+/*   Updated: 2024/05/17 13:30:18 by dkolopen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+static int	print_int(int nb, int len)
 {
-	va_list	args;
-	int		result;
-
-	va_start (args, str);
-	result = parse_str(str, args);
-	va_end (args);
-	return (result);
+	if (nb == -2147483648)
+	{
+		len += print_string("-2147483648");
+		return (len);
+	}
+	else if (nb < 0)
+	{
+		len += print_char('-');
+		len += print_int(-nb, len);
+	}
+	else if (nb >= 10)
+	{
+		len += print_int(nb / 10, len);
+		len += print_char(nb % 10 + '0');
+	}
+	else
+	{
+		len += print_char(nb + '0');
+	}
+	return (len);
 }
 
-/*int	main()
+int	put_nb(int n)
 {
-	int		*ptr;
-	int		i;
-	
-	i = 27;
-	ptr = &i;
-	printf("Result: %d %c %s %% %X %x %p %i %u\n", 7, 
-	//'c', "string", 15, 12345, ptr, 44,956);
-	ft_printf("Result: %d %c %s %% %X %x %p %i %u\n", 7,
-	'c', "string", 15, 12345, ptr, 44,956);
-	
-	return 0;
-}*/
+	return (print_int(n, 0));
+}

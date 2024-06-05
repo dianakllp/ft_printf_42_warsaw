@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   put_nb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkolopen <dkolopen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dianakolopenyuk <dianakolopenyuk@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:24:51 by dkolopen          #+#    #+#             */
-/*   Updated: 2024/05/17 13:30:18 by dkolopen         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:48:48 by dianakolope      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int	print_int(int nb, int len)
 	else if (nb < 0)
 	{
 		len += print_char('-');
-		len += print_int(-nb, len);
+		len = print_int(-nb, len);
 	}
 	else if (nb >= 10)
 	{
-		len += print_int(nb / 10, len);
+		len = print_int(nb / 10, len);
 		len += print_char(nb % 10 + '0');
 	}
 	else

@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkolopen <dkolopen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dianakolopenyuk <dianakolopenyuk@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:24:59 by dkolopen          #+#    #+#             */
-/*   Updated: 2024/05/17 13:41:16 by dkolopen         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:52:27 by dianakolope      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
 int	print_string(char *str)
 {
-	int	counter;
+	int	len;
 
-	counter = 0;
-	while (*str != '\0')
-	{
-		print_char(*str);
-		str++;
-		counter++;
-	}
-	return (counter);
+	len = 0;
+	if (!str)
+		str = "(null)";
+	len = ft_strlen(str);
+	write(1, str, len);
+	return (len);
 }

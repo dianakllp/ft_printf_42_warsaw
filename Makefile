@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_printf.c parse_str.c print_char.c\
-	print_hex.c print_int.c print_pointer.c print_string.c print_unsigned_i.c\
+	put_hex.c put_nb.c put_pointer.c print_string.c put_unsigned_i.c\
 
 OBJS = $(SRCS:.c=.o)
 
